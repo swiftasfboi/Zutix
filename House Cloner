@@ -1,0 +1,273 @@
+-- Premium Dark GUI (Improved Version)
+-- Made to look high-end, clean, and inspired by the screenshot
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local gui = player:WaitForChild("PlayerGui")
+
+-- remove old
+local old = gui:FindFirstChild("PremiumHouseCloner")
+if old then old:Destroy() end
+
+local screen = Instance.new("ScreenGui")
+screen.Name = "PremiumHouseCloner"
+screen.ResetOnSpawn = false
+screen.Parent = gui
+
+-- MAIN WINDOW
+local main = Instance.new("Frame")
+main.Size = UDim2.new(0, 540, 0, 420)
+main.Position = UDim2.new(0.5, -270, 0.5, -210)
+main.BackgroundColor3 = Color3.fromRGB(20, 20, 24)
+main.BorderSizePixel = 0
+main.Parent = screen
+
+-- Rounded
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 12)
+
+-- Drop Shadow (Premium Style)
+local shadow = Instance.new("ImageLabel")
+shadow.Parent = main
+shadow.ZIndex = -1
+shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+shadow.Position = UDim2.new(0.5, 0, 0.5, 6)
+shadow.Size = UDim2.new(1, 30, 1, 30)
+shadow.Image = "rbxassetid://6015897843"
+shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+shadow.ImageTransparency = 0.35
+shadow.BackgroundTransparency = 1
+
+-----------------------------------------
+-- TOP BAR
+-----------------------------------------
+local top = Instance.new("Frame")
+top.Parent = main
+top.Size = UDim2.new(1, 0, 0, 52)
+top.BackgroundColor3 = Color3.fromRGB(28, 28, 33)
+top.BorderSizePixel = 0
+Instance.new("UICorner", top).CornerRadius = UDim.new(0,12)
+
+local title = Instance.new("TextLabel")
+title.Parent = top
+title.Position = UDim2.new(0, 15, 0, 0)
+title.Size = UDim2.new(0.7, 0, 1, 0)
+title.BackgroundTransparency = 1
+title.Text = "ZutixHub | House Cloner (Improved)"
+title.Font = Enum.Font.GothamSemibold
+title.TextSize = 20
+title.TextColor3 = Color3.fromRGB(225, 225, 235)
+title.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Close Button (Premium Glow)
+local close = Instance.new("TextButton")
+close.Parent = top
+close.AnchorPoint = Vector2.new(1, 0.5)
+close.Position = UDim2.new(1, -12, 0.5, 0)
+close.Size = UDim2.new(0, 26, 0, 26)
+close.BackgroundColor3 = Color3.fromRGB(40, 40, 44)
+close.Text = "✕"
+close.TextColor3 = Color3.fromRGB(255, 90, 90)
+close.Font = Enum.Font.GothamBold
+close.TextSize = 16
+close.BorderSizePixel = 0
+Instance.new("UICorner", close).CornerRadius = UDim.new(0,6)
+
+close.MouseButton1Click:Connect(function()
+	screen:Destroy()
+end)
+
+-----------------------------------------
+-- TABS
+-----------------------------------------
+local tabFrame = Instance.new("Frame")
+tabFrame.Parent = main
+tabFrame.Position = UDim2.new(0, 15, 0, 60)
+tabFrame.Size = UDim2.new(1, -30, 0, 46)
+tabFrame.BackgroundTransparency = 1
+
+local function newTab(name, xPos)
+	local tab = Instance.new("TextButton")
+	tab.Parent = tabFrame
+	tab.Position = UDim2.new(0, xPos, 0, 0)
+	tab.Size = UDim2.new(0, 120, 1, 0)
+	tab.BackgroundColor3 = Color3.fromRGB(35, 35, 42)
+	tab.Text = name
+	tab.Font = Enum.Font.GothamMedium
+	tab.TextSize = 15
+	tab.TextColor3 = Color3.fromRGB(200,200,215)
+	tab.BorderSizePixel = 0
+	Instance.new("UICorner", tab).CornerRadius = UDim.new(0,8)
+	return tab
+end
+
+newTab("Main", 0)
+newTab("Create File", 130)
+newTab("Teleport", 260)
+newTab("Others", 390)
+
+-----------------------------------------
+-- CONTENT AREA
+-----------------------------------------
+
+local content = Instance.new("Frame")
+content.Parent = main
+content.Position = UDim2.new(0, 15, 0, 115)
+content.Size = UDim2.new(1, -30, 1, -165)
+content.BackgroundTransparency = 1
+
+-----------------------------------------
+-- Row Builder (Premium Version)
+-----------------------------------------
+local function newRow(labelText, y)
+	local row = Instance.new("Frame")
+	row.Parent = content
+	row.Position = UDim2.new(0, 0, 0, y)
+	row.Size = UDim2.new(1, 0, 0, 48)
+	row.BackgroundColor3 = Color3.fromRGB(26, 26, 30)
+	row.BorderSizePixel = 0
+	Instance.new("UICorner", row).CornerRadius = UDim.new(0,8)
+
+	local label = Instance.new("TextLabel")
+	label.Parent = row
+	label.Position = UDim2.new(0, 12, 0, 0)
+	label.Size = UDim2.new(0.6, 0, 1, 0)
+	label.Text = labelText
+	label.Font = Enum.Font.Gotham
+	label.TextColor3 = Color3.fromRGB(230, 230, 240)
+	label.TextSize = 15
+	label.BackgroundTransparency = 1
+	label.TextXAlignment = Enum.TextXAlignment.Left
+
+	local btn = Instance.new("TextButton")
+	btn.Parent = row
+	btn.AnchorPoint = Vector2.new(1, 0.5)
+	btn.Position = UDim2.new(1, -12, 0.5, 0)
+	btn.Size = UDim2.new(0, 160, 0, 34)
+	btn.BackgroundColor3 = Color3.fromRGB(40, 40, 48)
+	btn.Text = "Open"
+	btn.Font = Enum.Font.GothamMedium
+	btn.TextSize = 14
+	btn.TextColor3 = Color3.fromRGB(215, 215, 230)
+	btn.BorderSizePixel = 0
+	Instance.new("UICorner", btn).CornerRadius = UDim.new(0,8)
+
+	return row, btn
+end
+
+local _, houseType = newRow("Select house type", 0)
+houseType.Text = "micro_2023 ▾"
+
+local _, houseSelect = newRow("Select house", 54)
+local _, refresh = newRow("Refresh files", 108)
+local _, save = newRow("Save house to file", 162)
+local _, load = newRow("Load house from file", 216)
+
+-----------------------------------------
+-- INFO SECTION (glow effect)
+-----------------------------------------
+local info = Instance.new("Frame")
+info.Parent = content
+info.Position = UDim2.new(0, 0, 0, 270)
+info.Size = UDim2.new(1, 0, 0, 50)
+info.BackgroundColor3 = Color3.fromRGB(28, 28, 34)
+info.BorderSizePixel = 0
+Instance.new("UICorner", info).CornerRadius = UDim.new(0,8)
+
+local ic = Instance.new("TextLabel")
+ic.Parent = info
+ic.Position = UDim2.new(0, 12, 0, 8)
+ic.Size = UDim2.new(0, 34, 0, 34)
+ic.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+ic.Text = "!"
+ic.TextColor3 = Color3.fromRGB(255, 180, 100)
+ic.Font = Enum.Font.GothamBold
+ic.TextSize = 20
+ic.BorderSizePixel = 0
+Instance.new("UICorner", ic).CornerRadius = UDim.new(0,8)
+
+local warning = Instance.new("TextLabel")
+warning.Parent = info
+warning.Position = UDim2.new(0, 58, 0, 10)
+warning.Size = UDim2.new(1, -70, 1, -20)
+warning.Text = "Do not touch"
+warning.Font = Enum.Font.GothamSemibold
+warning.TextSize = 14
+warning.TextColor3 = Color3.fromRGB(230,230,240)
+warning.TextXAlignment = Enum.TextXAlignment.Left
+warning.BackgroundTransparency = 1
+
+-----------------------------------------
+-- PREMIUM TOGGLE
+-----------------------------------------
+local toggleRow = Instance.new("Frame")
+toggleRow.Parent = main
+toggleRow.Position = UDim2.new(0, 15, 1, -120)
+toggleRow.Size = UDim2.new(1, -30, 0, 48)
+toggleRow.BackgroundTransparency = 1
+
+local toggleLabel = Instance.new("TextLabel")
+toggleLabel.Parent = toggleRow
+toggleLabel.Position = UDim2.new(0, 0, 0, 0)
+toggleLabel.Size = UDim2.new(0.6, 0, 1, 0)
+toggleLabel.Text = "Paste textures"
+toggleLabel.Font = Enum.Font.Gotham
+toggleLabel.TextSize = 16
+toggleLabel.TextColor3 = Color3.fromRGB(230, 230, 240)
+toggleLabel.BackgroundTransparency = 1
+toggleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+local toggle = Instance.new("Frame")
+toggle.Parent = toggleRow
+toggle.AnchorPoint = Vector2.new(1, 0.5)
+toggle.Position = UDim2.new(1, 0, 0.5, 0)
+toggle.Size = UDim2.new(0, 60, 0, 30)
+toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+toggle.BorderSizePixel = 0
+Instance.new("UICorner", toggle).CornerRadius = UDim.new(1, 0)
+
+local circle = Instance.new("Frame")
+circle.Parent = toggle
+circle.Size = UDim2.new(0, 26, 0, 26)
+circle.Position = UDim2.new(0.05, 0, 0.07, 0)
+circle.BackgroundColor3 = Color3.fromRGB(180, 180, 195)
+circle.BorderSizePixel = 0
+Instance.new("UICorner", circle).CornerRadius = UDim.new(1,0)
+
+local toggled = false
+
+local function setToggle(val)
+	toggled = val
+	if toggled then
+		toggle.BackgroundColor3 = Color3.fromRGB(55, 150, 255)
+		circle:TweenPosition(UDim2.new(0.55, 0, 0.07, 0), "Out", "Quad", 0.15)
+	else
+		toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+		circle:TweenPosition(UDim2.new(0.05, 0, 0.07, 0), "Out", "Quad", 0.15)
+	end
+end
+
+toggleRow.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		setToggle(not toggled)
+	end
+end)
+
+-----------------------------------------
+-- SCAN BUTTON (Blue Accent, Premium Style)
+-----------------------------------------
+local scan = Instance.new("TextButton")
+scan.Parent = main
+scan.AnchorPoint = Vector2.new(1, 0)
+scan.Position = UDim2.new(1, -20, 1, -60)
+scan.Size = UDim2.new(0, 200, 0, 42)
+scan.BackgroundColor3 = Color3.fromRGB(50, 150, 255)
+scan.BorderSizePixel = 0
+scan.Text = "Scan house"
+scan.TextColor3 = Color3.fromRGB(255,255,255)
+scan.Font = Enum.Font.GothamSemibold
+scan.TextSize = 17
+Instance.new("UICorner", scan).CornerRadius = UDim.new(0,10)
+
+scan.MouseButton1Click:Connect(function()
+	print("Scan house clicked!")
+end)
