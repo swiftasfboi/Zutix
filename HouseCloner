@@ -1,0 +1,133 @@
+-- Load Sirius / Rayfield UI
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+-- Create main window
+local Window = Rayfield:CreateWindow({
+    Name = "Adopt Me | House Cloner ",
+    LoadingTitle = "Loading Kuni Hub Adopt Me Script...",
+    LoadingSubtitle = "House Cloner",
+    ConfigurationSaving = {Enabled = false},
+    KeySystem = false
+})
+
+-- ======================
+-- TABS
+-- ======================
+local MainTab = Window:CreateTab("Main", 4483362458)
+local CreateFileTab = Window:CreateTab("Create File", 4483362458)
+local TeleportTab = Window:CreateTab("Teleport", 4483362458)
+local OthersTab = Window:CreateTab("Others", 4483362458)
+
+-- ======================
+-- MAIN TAB CONTENT
+-- ======================
+
+-- Dropdown: House Type
+local houseType = "micro_2023"
+MainTab:CreateDropdown({
+    Name = "Select House Type",
+    Options = {"micro_2023", "small_2023", "villa_2023"},
+    CurrentOption = houseType,
+    Callback = function(option)
+        houseType = option
+        print("Selected house type:", option)
+    end
+})
+
+-- Dropdown: Select House File
+local selectedHouse = nil
+MainTab:CreateDropdown({
+    Name = "Select House",
+    Options = {"House1", "House2", "House3"}, -- replace with your dynamic file list
+    CurrentOption = "House1",
+    Callback = function(option)
+        selectedHouse = option
+        print("Selected house file:", option)
+    end
+})
+
+-- Buttons
+MainTab:CreateButton({
+    Name = "Refresh Files",
+    Callback = function()
+        print("Refresh files clicked!")
+        -- put your refresh function here
+    end
+})
+
+MainTab:CreateButton({
+    Name = "Save House to File",
+    Callback = function()
+        print("Save house clicked!")
+        -- put your save function here
+    end
+})
+
+MainTab:CreateButton({
+    Name = "Load House from File",
+    Callback = function()
+        print("Load house clicked!")
+        -- put your load function here
+    end
+})
+
+MainTab:CreateButton({
+    Name = "Scan House",
+    Callback = function()
+        print("Scan house clicked!")
+        -- put your scan function here
+    end
+})
+
+-- Toggle: Paste Textures
+local pasteTextures = false
+MainTab:CreateToggle({
+    Name = "Paste Textures",
+    CurrentValue = pasteTextures,
+    Callback = function(val)
+        pasteTextures = val
+        print("Paste textures toggled:", val)
+    end
+})
+
+-- Info Section (Label)
+MainTab:CreateLabel("âš ï¸ Do not touch")
+
+-- ======================
+-- CREATE FILE TAB
+-- ======================
+CreateFileTab:CreateButton({
+    Name = "Create New File",
+    Callback = function()
+        print("Create file clicked!")
+    end
+})
+
+-- ======================
+-- TELEPORT TAB
+-- ======================
+TeleportTab:CreateButton({
+    Name = "Teleport to House",
+    Callback = function()
+        print("Teleport clicked!")
+    end
+})
+
+-- ======================
+-- OTHERS TAB
+-- ======================
+OthersTab:CreateToggle({
+    Name = "Enable Extra Features",
+    CurrentValue = false,
+    Callback = function(val)
+        print("Extra features toggled:", val)
+    end
+})
+
+OthersTab:CreateButton({
+    Name = "Reset GUI",
+    Callback = function()
+        Window:Destroy()
+        print("GUI destroyed!")
+    end
+})
